@@ -5,6 +5,7 @@ from torch.utils.data import DataLoader
 from .model import BERT
 from .trainer import BERTTrainer
 from .dataset import BERTDataset, WordVocab
+from .dataset import QABERTDataset
 
 
 def train():
@@ -42,11 +43,11 @@ def train():
     print("Vocab Size: ", len(vocab))
 
     print("Loading Train Dataset", args.train_dataset)
-    train_dataset = BERTDataset(args.train_dataset, vocab, seq_len=args.seq_len,
+    train_dataset = QABERTDataset(args.train_dataset, vocab, seq_len=args.seq_len,
                                 corpus_lines=args.corpus_lines, on_memory=args.on_memory)
 
     print("Loading Test Dataset", args.test_dataset)
-    test_dataset = BERTDataset(args.test_dataset, vocab, seq_len=args.seq_len, on_memory=args.on_memory) \
+    test_dataset = QABERTDataset(args.test_dataset, vocab, seq_len=args.seq_len, on_memory=args.on_memory) \
         if args.test_dataset is not None else None
 
     print("Creating Dataloader")
