@@ -91,6 +91,7 @@ class QABERTDataset(Dataset):
 
     def random_sent(self, index):
         label, t1, t2 = self.get_corpus_line(index)
+        label = int(label)
 
         # output_text, label(isNotNext:0, isNext:1)
         return t1, t2, label
